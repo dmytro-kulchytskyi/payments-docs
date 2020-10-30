@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "
-## Card Transactions
+## Card TransactionsASDASDAS
 
 Before starting up with actual API documentation, there are a few concepts that must be understood. On credit card processing, there are two main concepts which are fundamental parts of how funds go from the customer’s credit card to the merchant’s bank. Those are:
   
