@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "
-## Card TransactionsASDASDAS
+## Card Transactions
 
 Before starting up with actual API documentation, there are a few concepts that must be understood. On credit card processing, there are two main concepts which are fundamental parts of how funds go from the customer’s credit card to the merchant’s bank. Those are:
   
@@ -100,6 +100,8 @@ schemes:
 paths:
   /tokens/tokenize:
     post:
+      security:
+      - ApiKeyAuth: []
       tags:
       - "Tokenization"
       summary: "Card Tokenize"
@@ -121,6 +123,8 @@ paths:
             $ref: "#/definitions/TokenizeResponse"
   /transactions/sale:
     post:
+      security:
+      - ApiKeyAuth: []
       tags:
       - "Card Transactions"
       summary: "Charge a Credit Card"
@@ -141,18 +145,17 @@ paths:
           description: "successful operation"
           schema: 
             $ref: "#/definitions/ChargeCreaditCardResponse"
-securityDefinitions:
-  api_key:
-    type: "apiKey"
-    name: "api_key"
-    in: "header"
-  petstore_auth:
-    type: "oauth2"
-    authorizationUrl: "https://petstore.swagger.io/oauth/authorize"
-    flow: "implicit"
-    scopes:
-      read:pets: "read your pets"
-      write:pets: "modify pets in your account"
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+securityDefinitions: 
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: Authorization
 definitions:
   TokenizeRequest:
     type: "object"
